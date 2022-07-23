@@ -66,7 +66,18 @@ export const XmtpProvider: React.FC = ({ children }) => {
         dispatchConversations([convo])
       })
       setLoadingConversations(false)
-      router.push(router.query.recipientWalletAddr ? `/dm/${router.query.recipientWalletAddr}` : '/dm/')
+      console.log(`Redirecting to ${router.query.recipientWalletAddr}`)
+      router.push(
+        {
+          pathname: router.query.recipientWalletAddr ? `/dm/${router.query.recipientWalletAddr}` : '/dm/',
+          query: {
+            color: router.query.color,
+            logoUrl: router.query.logoUrl
+          },
+        },
+        router.query.recipientWalletAddr ? `/dm/${router.query.recipientWalletAddr}` : '/dm/',
+      );
+
     }
     listConversations()
   }, [client, walletAddress])

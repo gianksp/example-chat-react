@@ -22,20 +22,17 @@ const NavigationColumnLayout: React.FC = ({ children }) => (
 
 const NavigationHeaderLayout: React.FC = ({ children }) => {
   const router = useRouter()
-  const logoUrl = router.query.logoUrl as string
   const color = router.query.color as string
-  console.log("Logo");
-  console.log(logoUrl);
-  console.log(color);
+  const logoUrl = router.query.logoUrl as string
   return (
-    <div className="h-[72px] flex items-center justify-between flex-shrink-0 px-4 bg-nav-title">
+    <div className="h-[72px] nav-container-widget flex items-center justify-between flex-shrink-0 px-4">
       <Link href="/" passHref={true}>
-        <img className="h-8 w-auto" src={logoUrl} alt="LOGO" />
+        <img className="h-8 w-auto" src={logoUrl} alt="XMTP" />
       </Link>
       {children}
       <style jsx>{`
-        .bg-nav-title {
-          background-color:#${color};
+        .nav-container-widget {
+          background: #${color};
         }
       `}</style>
     </div>
