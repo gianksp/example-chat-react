@@ -26,9 +26,11 @@ const NavigationHeaderLayout: React.FC = ({ children }) => {
   const logoUrl = router.query.logoUrl as string
   return (
     <div className="h-[72px] nav-container-widget flex items-center justify-between flex-shrink-0 px-4">
+      {logoUrl && (
       <Link href="/" passHref={true}>
         <img className="h-8 w-auto" src={logoUrl} alt="XMTP" />
-      </Link>
+      </Link>)}
+      <p>Powered by XMTP</p>
       {children}
       <style jsx>{`
         .nav-container-widget {
