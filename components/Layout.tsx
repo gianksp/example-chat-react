@@ -20,14 +20,27 @@ const NavigationColumnLayout: React.FC = ({ children }) => (
   </aside>
 )
 
-const NavigationHeaderLayout: React.FC = ({ children }) => (
-  <div className="h-[72px] bg-p-600 flex items-center justify-between flex-shrink-0 px-4">
-    <Link href="/" passHref={true}>
-      <img className="h-8 w-auto" src="/xmtp-icon.png" alt="XMTP" />
-    </Link>
-    {children}
-  </div>
-)
+const NavigationHeaderLayout: React.FC = ({ children }) => {
+  const router = useRouter()
+  const logoUrl = router.query.logoUrl as string
+  const color = router.query.color as string
+  console.log("Logo");
+  console.log(logoUrl);
+  console.log(color);
+  return (
+    <div className="h-[72px] flex items-center justify-between flex-shrink-0 px-4 bg-nav-title">
+      <Link href="/" passHref={true}>
+        <img className="h-8 w-auto" src={logoUrl} alt="LOGO" />
+      </Link>
+      {children}
+      <style jsx>{`
+        .bg-nav-title {
+          background-color:#${color};
+        }
+      `}</style>
+    </div>
+  )
+}
 
 const TopBarLayout: React.FC = ({ children }) => (
   <div className="sticky top-0 z-10 flex-shrink-0 flex bg-zinc-50 border-b border-gray-200 md:bg-white md:border-0">

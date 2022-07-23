@@ -5,8 +5,10 @@ import { Signer } from 'ethers'
 import { getEnv } from '../helpers'
 import { XmtpContext, XmtpContextType } from '../contexts/xmtp'
 import useMessageStore from '../hooks/useMessageStore'
+import { useRouter } from 'next/router'
 
 export const XmtpProvider: React.FC = ({ children }) => {
+  const router = useRouter()
   const [wallet, setWallet] = useState<Signer>()
   const [walletAddress, setWalletAddress] = useState<string>()
   const [client, setClient] = useState<Client>()
@@ -64,6 +66,7 @@ export const XmtpProvider: React.FC = ({ children }) => {
         dispatchConversations([convo])
       })
       setLoadingConversations(false)
+      router.push(router.query.recipientWalletAddr ? `/dm/${router.query.recipientWalletAddr}` : '/dm/')
     }
     listConversations()
   }, [client, walletAddress])

@@ -109,6 +109,7 @@ export const WalletProvider = ({
       setChainId(chainId)
       setSigner(signer)
       setAddress(await signer.getAddress())
+      console.log("connected");
       return signer
     } catch (e) {
       // TODO: better error handling/surfacing here.
